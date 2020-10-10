@@ -12,6 +12,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './src/views/login';
 import Home from './src/views/home';
 import Profile from './src/views/profile';
+import Maps from './src/views/maps';
+import LocationCreate from "./src/views/crud/location_create";
 
 //----- REDUX -------------------
 import { Provider } from 'react-redux';
@@ -39,6 +41,8 @@ function App(){
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Maps" component={Maps} />
+          <Stack.Screen name="LocationCreate" component={LocationCreate} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

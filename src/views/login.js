@@ -11,7 +11,6 @@ import { Config } from '../config';
 // ----------  REUX ------------------------
 import { connect } from 'react-redux';
 
-
 class Login extends Component{
     constructor(props){
         super(props);
@@ -31,21 +30,6 @@ class Login extends Component{
             //     <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Profile')} />
             //   ),
         });
-
-        // let userDetails = {
-        //     id: '35',
-        //     name: 'percy alvarez'
-        // }
-        //---------------------------
-        // AsyncStorage.setItem('db_login', JSON.stringify(userDetails))
-        // .then(()=>{
-        // console.log('data saved');
-        // })
-        // .catch((error)=>{
-        // console.log(error);
-        // })
-        // -----------------
-
         AsyncStorage.getItem('db_login')
         .then((value)=>{
             console.log(value)
