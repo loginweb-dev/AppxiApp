@@ -10,6 +10,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 //-------------------  Views ----------------------------------
 import Login from './src/views/login';
+import Register from './src/views/register';
 import Home from './src/views/home';
 import Profile from './src/views/profile';
 import Maps from './src/views/maps';
@@ -43,6 +44,7 @@ function App(){
           <Stack.Screen name="Profile" component={Profile} />
           <Stack.Screen name="Maps" component={Maps} />
           <Stack.Screen name="LocationCreate" component={LocationCreate} />
+          <Stack.Screen name="Register" component={Register} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

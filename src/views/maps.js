@@ -85,7 +85,7 @@ class Maps extends Component {
                         latitudeDelta: 0.030,
                         longitudeDelta: 0.030
                     }}
-                    onRegionChange={region => {}}
+                    // onRegionChange={}
                 >
                     <MapView.Marker
                         coordinate={{ "latitude": this.state.latitude,   

@@ -2,7 +2,7 @@ export const Config = {
     appName: "Appxi",
     appDescription: "Versión inical de una aplicación que incluye react-navigation y redux.",
     autor: "LoginWeb",
-    API: "https://appxi.loginwev.dev",
+    API: "https://appxiapi.loginweb.dev",
     debug: false,
     color: {
         'primary': '#0B2647',

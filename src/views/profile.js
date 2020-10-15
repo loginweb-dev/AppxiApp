@@ -1,6 +1,6 @@
 //------------------ REACT ---------------------------------------------+
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, TextInput, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -16,6 +16,11 @@ class Profile extends Component{
     constructor(props){
         super(props);
         this.state = {
+            loading: false,
+            username: '',
+            email: '',
+            password: '',
+            confirmed: true
         }
     }
 
@@ -42,35 +47,73 @@ class Profile extends Component{
     render() {
         return (
              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                 <Text>Profile</Text>
-                 <Icon.Button
-                    name="trash"
-                    backgroundColor={Config.color.delete}
-                    onPress={() => 
-                        {Alert.alert(
-                            'Salir de '+ Config.appName,
-                            'Estas Segur@ de Salir',
-                            [
-                                {
-                                text: 'SI',
-                                onPress: this.mylogut.bind(this)
-                                },
-                                {
-                                text: 'NO',
-                                onPress: () => console.log('Cancel Pressed'),
-                                style: 'cancel'
-                                },
-                                // { text: 'OK', onPress: () => console.log('OK Pressed') }
-                            ],
-                            { cancelable: false }
-                        );
+                <Text>{  JSON.stringify(this.props.user) }</Text>
+                {/* <Image
+                    style={{ width: 200, height:200 }}
+                    source={{
+                        uri: 'https://mystorage.loginweb.dev/storage/Projects/appxi/icon-512x512.png',
+                    }}
+                /> */}
+                <TextInput
+                    placeholder ="Alias (Nick)"
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
+                    onChangeText={text => this.setState({username: text})}
+                    value={this.state.username}
+                />
+                <TextInput
+                    placeholder ="Nombres"
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
+                    onChangeText={text => this.setState({username: text})}
+                    value={this.state.username}
+                />
+                <TextInput
+                    placeholder ="Apellidos"
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
+                    onChangeText={text => this.setState({username: text})}
+                    value={this.state.username}
+                />
+                <TextInput
+                    placeholder ="Telefono"
+                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
+                    onChangeText={text => this.setState({username: text})}
+                    value={this.state.username}
+                />
+                <View style={{ flexDirection: 'row' }}>
+                    <Icon.Button
+                        name="trash"
+                        backgroundColor={Config.color.delete}
+                        onPress={() => 
+                            {Alert.alert(
+                                'Salir de '+ Config.appName,
+                                'Estas Segur@ de Salir',
+                                [
+                                    {
+                                    text: 'SI',
+                                    onPress: this.mylogut.bind(this)
+                                    },
+                                    {
+                                    text: 'NO',
+                                    onPress: () => console.log('Cancel Pressed'),
+                                    style: 'cancel'
+                                    },
+                                    // { text: 'OK', onPress: () => console.log('OK Pressed') }
+                                ],
+                                { cancelable: false }
+                            );
+                            }
                         }
-                    }
+                    >
+                    <Text style={{ color: Config.color.textPrimary }}>Salir</Text>
+                    </Icon.Button>
+                    <Icon.Button
+                    name="send"
+                    backgroundColor="#3b5998"
+                    // onPress={this.SendForm.bind(this)}
                 >
-                <Text style={{ color: Config.color.textPrimary }}>Salir</Text>
+                    {this.state.loading ? 'Enviando...' : 'Enviar'}
                 </Icon.Button>
-
-             </View>
+                </View>
+            </View>
         );
     }
 }
@@ -89,7 +132,6 @@ const mapDispatchToProps = (dispatch) => {
         })
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
 
 

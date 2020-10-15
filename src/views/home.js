@@ -20,7 +20,7 @@ class Home extends Component{
 
     componentDidMount(){
         this.props.navigation.setOptions({
-            title: 'Hola, '+this.props.user.name,
+            title: 'Hola, '+this.props.user.username,
             headerRight: () => (
                 // <Button onPress={() => this.props.navigation.navigate('Profile')} title="Edit" />
                 <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Profile')} />
@@ -32,8 +32,8 @@ class Home extends Component{
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 {/* <Text>Home</Text>    */}
-                <Text style={{ fontSize: 30, alignItems: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>Selecciona el Tipo</Text>
-                <Text style={{ fontSize: 30, alignItems: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>de Transporte</Text>
+                {/* <Text style={{ fontSize: 30, alignItems: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>Selecciona el Tipo</Text> */}
+                <Text style={{ fontSize: 30, alignItems: 'center', fontWeight: 'bold', textDecorationLine: 'underline' }}>CUAL PREFIERES ?</Text>
                 <Text style={{ fontSize: 25, paddingVertical: 10 }}>Moto Taxi</Text>
                 <TouchableHighlight onPress={() => {this.props.navigation.navigate('Maps')}} style={{  alignItems: 'center' }}>
                     <Image

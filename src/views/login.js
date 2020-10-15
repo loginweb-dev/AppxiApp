@@ -1,9 +1,10 @@
 //------------------ REACT ---------------------------------------------+
 import React, { Component } from 'react';
-import { View, Text, Image, TextInput, Alert } from 'react-native';
+import { View, Text, Image, TextInput, Alert, ToastAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-community/async-storage';
+import axios from 'axios';
 
 //----------------- CONFIG------------------------------
 import { Config } from '../config';
@@ -25,10 +26,12 @@ class Login extends Component{
     componentDidMount(){
         this.props.navigation.setOptions({
             title: 'Bienvenido a '+ Config.appName,
-            // headerRight: () => (
-            //     <Button onPress={() => this.props.navigation.navigate('Profile')} title="Edit" />
-            //     <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Profile')} />
-            //   ),
+            headerRight: () => (
+                // <Button onPress={() => this.props.navigation.navigate('Profile')} title="Edit" />
+                <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Register')}>
+                    Nuevo
+                </Icon.Button>
+              ),
         });
         AsyncStorage.getItem('db_login')
         .then((value)=>{
@@ -52,41 +55,43 @@ class Login extends Component{
    
     async SetLogin() {
         this.setState({loading: true});
-   
-        fetch('https://appxi.loginweb.dev/api/user/'+this.state.email+'/'+this.state.password)
-        .then(res => res.json())
-        .then(res => {
-            console.log(res);
-            if(res.error){
-                Alert.alert(res.error, 'Intentalo de nuevo');
-                this.setState({loading: false});
-            }else
-            {
-                let user = {
-                    id: res.user.id,
-                    name: res.user.name,
-                    email: res.user.email,
-                    avatar: res.user.avatar,
-                    created_at: res.user.created_at,
-                    updated_at: res.user.updated_at
-                }
-                this.props.setUser(user)
-    
-                AsyncStorage.setItem('db_login', JSON.stringify(user))
-                .then(()=>{
-                    console.log('db_login saved');
-                })
-                .catch((error)=>{
-                    console.log(error);
-                })
-                this.props.navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Home' }],
-                    key: null,
-                }); 
-            }
         
-        })
+        try {
+            const { data } = await axios.post(Config.API+'/auth/local', {
+                identifier: this.state.email,
+                password: this.state.password,
+            });
+
+            let user = {
+                id: data.user.id,
+                username: data.user.username,
+                email: data.user.email,
+                created_at: data.user.created_at,
+                updated_at: data.user.updated_at,
+                jwt: data.jwt
+            }
+            this.props.setUser(user);
+            AsyncStorage.setItem('db_login', JSON.stringify(user))
+            .then(()=>{
+                console.log('db_login saved');
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+            this.props.navigation.reset({
+                index: 0,
+                routes: [{ name: 'Home' }],
+                key: null,
+            }); 
+
+        } catch (error) {
+            ToastAndroid.showWithGravity(
+                error.message,
+                ToastAndroid.SHORT,
+                ToastAndroid.TOP
+            );
+            this.setState({loading: false, password: ''});
+        }
     }
     render() {
         return (
