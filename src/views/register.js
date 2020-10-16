@@ -13,6 +13,10 @@ import { Config } from '../config';
 // ----------  REUX ------------------------
 import { connect } from 'react-redux';
 
+
+//------------ Components -----------
+import TextInputAlt from "./components/TextInputAlt";
+
 class Register extends Component{
     constructor(props){
         super(props);
@@ -79,7 +83,7 @@ class Register extends Component{
             })
             this.props.navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home' }],
+                routes: [{ name: 'TabMenu' }],
                 key: null,
             }); 
         } else {
@@ -107,7 +111,13 @@ class Register extends Component{
         return (
              <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                  {/* <Text>Profile</Text> */}
-                
+
+                 {/* <TextInputAlt
+                        label='Email'
+                        placeholder='Tu email o celular'
+                        keyboardType='email-address'
+                    /> */}
+
                  <TextInput
                     placeholder ="Nombre"
                     style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}

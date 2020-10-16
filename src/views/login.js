@@ -26,6 +26,9 @@ class Login extends Component{
     componentDidMount(){
         this.props.navigation.setOptions({
             title: 'Bienvenido a '+ Config.appName,
+            // headerLeft: () => (
+            //     <Text>Bienvenido a Appxi</Text>
+            // ),
             headerRight: () => (
                 // <Button onPress={() => this.props.navigation.navigate('Profile')} title="Edit" />
                 <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Register')}>
@@ -33,23 +36,23 @@ class Login extends Component{
                 </Icon.Button>
               ),
         });
-        AsyncStorage.getItem('db_login')
-        .then((value)=>{
-            console.log(value)
-            if (value !== null) {
-                const db_login = JSON.parse(value);
-                this.props.setUser(db_login);
-                console.log(db_login);
-                this.props.navigation.reset({
-                    index: 0,
-                    routes: [{ name: 'Home' }],
-                    key: null,
-                }); 
-            }
-        })
-        .catch((error)=>{
-            console.log(error);
-        })
+        // AsyncStorage.getItem('db_login')
+        // .then((value)=>{
+        //     console.log(value)
+        //     if (value !== null) {
+        //         const db_login = JSON.parse(value);
+        //         this.props.setUser(db_login);
+        //         console.log(db_login);
+        //         this.props.navigation.reset({
+        //             index: 0,
+        //             routes: [{ name: 'TabMenu' }],
+        //             key: null,
+        //         }); 
+        //     }
+        // })
+        // .catch((error)=>{
+        //     console.log(error);
+        // })
     }
 
    
@@ -80,7 +83,7 @@ class Login extends Component{
             })
             this.props.navigation.reset({
                 index: 0,
-                routes: [{ name: 'Home' }],
+                routes: [{ name: 'TabMenu' }],
                 key: null,
             }); 
 
