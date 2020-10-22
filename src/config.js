@@ -8,12 +8,16 @@ export const Config = {
         'primary': '#0B2647',
         'secondary': '#405D95',
         'delete': '#8B0000',
-        'textPrimary': '#FFFFFF',
+        'textPrimary': '#0B2647',
         'textSecondary': '#FFFFFF',
         'textMuted': '#AFADAD'
     },
     maps: {
         latitude: -14.831733,
         longitude: -64.900949
+    },
+    rrss: {
+        facebook: '#3b5998',
+        google: '#DD4B39'
     }
 }

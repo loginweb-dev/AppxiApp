@@ -1,6 +1,6 @@
 //------------------ REACT ---------------------------------------------+
 import React, { Component } from 'react';
-import { View, Text, Alert, TextInput, ToastAndroid } from 'react-native';
+import { View, Text, Alert, TextInput, ToastAndroid, Picker, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import CheckBox from '@react-native-community/checkbox';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -31,7 +31,7 @@ class Register extends Component{
 
     componentDidMount(){
         this.props.navigation.setOptions({
-            title: 'Registro',
+            title: 'Registrar Nueva Cuenta',
             // headerRight: () => (
             //     // <Button onPress={() => this.props.navigation.navigate('Profile')} title="Edit" />
             //     <Icon.Button name="edit" backgroundColor="#3b5998" onPress={() => this.props.navigation.navigate('Profile')} />
@@ -109,18 +109,62 @@ class Register extends Component{
 
     render() {
         return (
-             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                 {/* <Text>Profile</Text> */}
+            <>
+            <ScrollView style={{  flex: 1, marginTop: Register.statusBarHeight }}>
+                <View style={{ margin: 5, flex: 1 }}>
+                    <Text>Nombres (Obligatorio)</Text>
+                    <TextInput
+                        placeholder ="Nombres"
+                        style={{ borderColor: Config.color.textPrimary, borderWidth: 1, width: '100%' }}
+                        onChangeText={text => this.setState({username: text})}
+                        value={this.state.username}
+                    />
+                </View>
+               
+                <View style={{ margin: 5, flex: 1 }}>
+                    <Text>Apellidos (Obligatorio)</Text>
+                    <TextInput
+                        placeholder ="Apellidos"
+                        style={{ borderColor: Config.textPrimary, borderWidth: 1, width: '100%' }}
+                        onChangeText={text => this.setState({username: text})}
+                        value={this.state.username}
+                    />
+                </View>
 
-                 {/* <TextInputAlt
-                        label='Email'
-                        placeholder='Tu email o celular'
-                        keyboardType='email-address'
-                    /> */}
+                <View style={{ margin: 5, flex: 1 }}>
+                    <Text>Telefono (Obligatorio)</Text>
+                    <TextInput
+                        placeholder ="Telefono"
+                        style={{ borderColor: Config.color.textPrimary, borderWidth: 1, width: '100%' }}
+                        onChangeText={text => this.setState({username: text})}
+                        value={this.state.username}
+                    />
+                </View>
+                <View style={{ margin: 5, flex: 1 }}>
+                    <Text>Correo (Opcional)</Text>
+                    <TextInput
+                        placeholder ="Telefono"
+                        style={{ borderColor: Config.textPrimary, borderWidth: 1, width: '100%' }}
+                        onChangeText={text => this.setState({username: text})}
+                        value={this.state.username}
+                    />
+                </View>
 
-                 <TextInput
-                    placeholder ="Nombre"
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
+                <View style={{ margin: 5, flex: 1 }}>
+                    <Text>Contraseña (Obligatorio)</Text>
+                    <TextInput
+                        placeholder ="Telefono"
+                        style={{ borderColor: Config.textPrimary, borderWidth: 1, width: '100%' }}
+                        onChangeText={text => this.setState({username: text})}
+                        value={this.state.username}
+                    />
+                </View>
+                
+            
+                {/* <Text>Telefono (*)</Text>
+                <TextInput
+                    placeholder ="Apellidos"
+                    style={{ borderColor: Config.textPrimary, borderWidth: 1, width: '100%', marginVertical: 10 }}
                     onChangeText={text => this.setState({username: text})}
                     value={this.state.username}
                 />
@@ -130,12 +174,6 @@ class Register extends Component{
                     onChangeText={text => this.setState({email: text})}
                     value={this.state.email}
                 />
-                {/* <TextInput
-                    placeholder ="Telefono"
-                    style={{ height: 40, borderColor: 'gray', borderWidth: 1, width: 300, marginVertical: 5 }}
-                    onChangeText={text => this.setState({phone: text})}
-                    // value={this.props.user.id.toString()}
-                /> */}
                 <TextInput
                     placeholder ="Contraseña"
                     secureTextEntry={true}
@@ -149,9 +187,10 @@ class Register extends Component{
                     onPress={this.SendForm.bind(this)}
                 >
                     {this.state.loading ? 'Enviando...' : 'Enviar'}
-                </Icon.Button>
+                </Icon.Button> */}
                 
-             </View>
+             </ScrollView>
+             </>
         );
     }
 }

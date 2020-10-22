@@ -15,7 +15,7 @@ import Login from './src/views/login';
 import Register from './src/views/register';
 import Home from './src/views/home';
 import Profile from './src/views/profile';
-import Maps from './src/views/maps';
+import Location from './src/views/location';
 import LocationCreate from "./src/views/crud/location_create";
 
 //----- REDUX -------------------
@@ -41,19 +41,27 @@ function App(){
             },
           }}
         >
-          <Stack.Screen
+          {/* <Stack.Screen
             name="SplashScreen" component={SplashScreen}
             options={{
               title: '',
               headerTransparent: true,
             }}
+          /> */}
+          <Stack.Screen name="Login" component={Login} 
+            options={{
+              // title: '',
+              headerTransparent: true,
+            }}
+            independent={true}
           />
-          <Stack.Screen name="Login" component={Login} />
           {/* <Stack.Screen name="Home" component={Home} /> */}
           {/* <Stack.Screen name="Profile" component={Profile} /> */}
           {/* <Stack.Screen name="Maps" component={Maps} /> */}
           {/* <Stack.Screen name="LocationCreate" component={LocationCreate} /> */}
           <Stack.Screen name="Register" component={Register} />
+          <Stack.Screen name="LocationCreate" component={LocationCreate} />
+          
           <Stack.Screen
             name="TabMenu" component={TabMenu}
             options={{
@@ -77,23 +85,24 @@ function TabMenu() {
           inactiveTintColor: 'gray',
         }}
     >
+     
       <Tab.Screen
-        name="Home"
+        name="Ubicaciones"
+        component={Location}
+        options={{
+          tabBarLabel: 'Ubicaciones',
+          tabBarIcon: ({ color }) => (
+            <Icon name="map" color={color} size={26} />
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="Hictorico"
         component={Home}
         options={{
           tabBarLabel: 'Hictorico',
           tabBarIcon: ({ color }) => (
             <Icon name="history" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Services"
-        component={Maps}
-        options={{
-          tabBarLabel: 'Servicios',
-          tabBarIcon: ({ color }) => (
-            <Icon name="car" color={color} size={26} />
           ),
         }}
       />

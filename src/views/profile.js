@@ -1,6 +1,6 @@
 //------------------ REACT ---------------------------------------------+
 import React, { Component } from 'react';
-import { View, Text, Alert, TextInput, Image } from 'react-native';
+import { View, Text, Alert, TextInput, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
@@ -42,13 +42,13 @@ class Profile extends Component{
         // this.props.navigation.navigate('Login');
         this.props.navigation.reset({
             index: 0,
-            routes: [{ name: 'SplashScreen' }],
+            routes: [{ name: 'Login' }],
             key: null,
         }); 
     }
     render() {
         return (
-             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+             <ScrollView style={{ flex: 1 }}>
                 <Text>{  JSON.stringify(this.props.user) }</Text>
                 {/* <Image
                     style={{ width: '100%', height: '100%' }}
@@ -122,7 +122,7 @@ class Profile extends Component{
                     <Text style={{ color: Config.color.textPrimary }}>Salir</Text>
                     </Icon.Button>
                 </View>
-            </View>
+            </ScrollView>
         );
     }
 }
